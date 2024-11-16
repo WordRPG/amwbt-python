@@ -1,3 +1,6 @@
+""" 
+    BRUTE FORCE NEAREST NEIGHBOR SEARCH
+""" 
 
 from .indexer import Indexer
 
@@ -9,6 +12,10 @@ class BruteForceNNS(Indexer):
         TREE QUERIES 
     """ 
     def query(self, target, k): 
+        # --- main results --- #
+        results = {}
+
+        # --- search for nearest neighbors --- # 
         nearest = [] 
         for i in range(len(self.points)): 
             otherPoint = self.points[i]
@@ -16,4 +23,13 @@ class BruteForceNNS(Indexer):
             nearest.append({ "id" : otherPoint.id, "distance" : distance })
         nearest.sort(key=lambda x: x["distance"])
         nearest = nearest[:k]
-        return nearest
+
+        # --- make results --- # 
+        results = {
+            "nearest" : nearest,
+            "visitCounts" : {
+                "pointsVisited" : len(self.points)
+            } 
+        }
+
+        return results

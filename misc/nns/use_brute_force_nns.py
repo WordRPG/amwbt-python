@@ -1,28 +1,25 @@
-import settings 
 
-from core.utils.generate import generate_points, generate_point
+
+import time
+import settings
+from .nns_runner import NNSRunner 
 from core.nns.brute_force import BruteForceNNS 
-from core.utils.measures import *
+from core.utils.measures import * 
 
-# --- generate points --- # 
-print("Generating points.")
-points = generate_points(
-    settings.NNS_POINT_COUNT, 
-    lambda: generate_point(settings.NNS_POINT_DIMENSIONS)
-)
-print(f"\tGenerated {len(points)} points with {len(points[0])} dimensions.")
+nns = NNSRunner() 
 
-# --- build indexer --- # 
-print("Building indexer.") 
-indexer = BruteForceNNS(
-    measure = euclidean_distance,
-    verbose = True,
-    normalize = settings.NNS_SHOULD_NORMALIZE
-) 
-indexer.build(points) 
+def build_brute_force_nns(): 
+    start = time.time()
+    indexer = BruteForceNNS(
+        measure = euclidean_distance,
+        verbose = True,
+        normalize = settings.NNS_SHOULD_NORMALIZE
+    ) 
+    indexer.build(nns.points) 
+    end = time.time()
+    nns.benchmark["build"] = end - start
+    return indexer
 
-# --- run query --- # 
-target = indexer.points[settings.NNS_TARGET] 
-nearest = indexer.query(target, settings.NNS_QUERY_COUNT)
-for neighbor in nearest:
-    print(f"\t\t{neighbor['id']} | {neighbor['distance']}")
+nns.build_indexer = build_brute_force_nns 
+
+nns.start()

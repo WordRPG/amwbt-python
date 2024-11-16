@@ -28,6 +28,6 @@ def project_to_line(A, B, C):
     D = [A[i] + projection_factor * AB[i] for i in range(len(A))]
     return D
 
-
-
-
+def median(values): 
+    values = sorted(values) 
+    return values[len(values) // 2]

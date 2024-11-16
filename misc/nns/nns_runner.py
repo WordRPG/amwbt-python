@@ -20,10 +20,13 @@ class NNSRunner:
             f"\tGenerated {len(self.points)} points with " + \
             f"{len(self.points[0])} dimensions."
         )
-
         # --- build indexer --- # 
         print("Building indexer.") 
         self.indexer = self.build_indexer()
+        print(
+            json.dumps(self.indexer.tree_info, indent=4)
+        )
+        exit()
 
         # --- run query --- # 
         print("Running query.")

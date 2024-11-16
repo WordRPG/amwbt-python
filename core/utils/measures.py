@@ -28,3 +28,6 @@ def inverse_cosine_distance(A, B):
 
 def cosine_similarity_score(A, B): 
     return (cosine_similarity(A, B) + 1) / 2
+
+def inverted_cosine_similarity_score(A, B): 
+    return -1 * cosine_similarity_score(A, B)

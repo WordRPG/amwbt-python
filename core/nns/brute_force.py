@@ -18,9 +18,9 @@ class BruteForceNNS(Indexer):
         # --- search for nearest neighbors --- # 
         nearest = [] 
         for i in range(len(self.points)): 
-            otherPoint = self.points[i]
-            distance = self.measure(target.value, otherPoint.value) 
-            nearest.append({ "id" : otherPoint.id, "distance" : distance })
+            other_point = self.points[i]
+            distance = self.measure(target.value, other_point.value) 
+            nearest.append({ "id" : other_point.id, "distance" : distance })
         nearest.sort(key=lambda x: x["distance"])
         nearest = nearest[:k]
 

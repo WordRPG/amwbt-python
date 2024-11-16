@@ -32,6 +32,16 @@ class Indexer:
         # --- (optional) tree root --- #
         self.root = {}
 
+        # --- (optional) tree details --- # 
+        self.tree_info = {
+            "nodeCount" : 0,
+            "levels" : {}, 
+            "leaves" : {
+                "count" : 0, 
+                "levels" : {}
+            }
+        }
+
     """ 
         TREE CONSTRUCTION
     """ 
@@ -39,7 +49,7 @@ class Indexer:
     def build(self, points):
         print(f"{self.indent}-- Building...")
         self.add_points(points) 
-        self.build_indexer(points)
+        self.build_indexer(self.points)
     
     def add_points(self, points): 
         print(f"{self.indent}-- Adding points.")

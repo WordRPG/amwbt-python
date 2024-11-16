@@ -10,6 +10,9 @@ def euclidean_distance(A, B):
     distance = math.sqrt(total)
     return distance
 
+def inverse_euclidean_distance(A, B):
+    return -1 * euclidean_distance(A, B)
+
 def cosine_similarity(A, B): 
     dot_product_ = dot_product(A, B)
     magnitude_a = magnitude(A)

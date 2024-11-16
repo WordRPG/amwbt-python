@@ -5,6 +5,6 @@ point = generate_point(3)
 print(point)
 
 print(":: Generating points.")
-points = generate_points(10, lambda: generate_point(3))
+points = generate_points(100000, lambda: generate_point(3))
 for point in points:
     print("\t", point)

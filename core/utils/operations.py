@@ -1,6 +1,10 @@
+import math 
 
 def magnitude(A): 
-    pass 
+    component_total = 0 
+    for i in range(len(A)):
+        component_total += A[i]
+    return math.sqrt(component_total)
 
 def normalize(A):
     pass 
